@@ -1,0 +1,10 @@
+1,Phantom Of The Day,Otha Clayborne
+2,Rise With A Goal,Walton Kottke
+3,Tree Of The Plague,Nicolas Grimshaw
+4,Healing The Moon,Walton Kottke
+5,Knights And Rebels,Lloyd Tschanz
+6,Opponent Of Dawn,Ernesto Nettles
+7,Tree Of Eternity,Perry Eppler
+8,Wolves Of The End,Lamont Fitting
+9,Knights And Rebels,Otha Clayborne
+10,Companion Of Next Year,Lamont Fitting
