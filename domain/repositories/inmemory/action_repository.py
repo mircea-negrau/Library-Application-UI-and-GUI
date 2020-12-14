@@ -25,6 +25,9 @@ class ActionRepository:
     def get_all_actions(self):
         return self.__undo_list
 
+    def get_all_actions_redo(self):
+        return self.__redo_list
+
     def get_next_action_id(self):
         self.__action_id += 1
         return self.__action_id

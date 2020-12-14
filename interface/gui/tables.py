@@ -227,10 +227,10 @@ class StatisticsTableWidget(QTableWidget):
         books_list = self._rental_service.get_list_of_books_of_most_rented_author(author)
         self.setRowCount(len(books_list))
         if len(books_list) != 0:
-            QMessageBox.information(self, "Most rented author", author["Name"] + "-" + str(author["Rental amount"]))
             for index, book in enumerate(books_list):
                 self.setItem(index, 0, QtWidgets.QTableWidgetItem(book["Title"]))
                 self.setItem(index, 1, QtWidgets.QTableWidgetItem(str(author["Name"])))
                 self.setItem(index, 2, QtWidgets.QTableWidgetItem(str(book["Rental amount"])))
+            QMessageBox.information(self, "Most rented author", author["Name"] + "-" + str(author["Rental amount"]))
         else:
             QMessageBox.warning(self, "Most rented author", "No books rented!")

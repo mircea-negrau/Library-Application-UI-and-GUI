@@ -1,10 +1,10 @@
-1,Phantom Of The Day,Otha Clayborne
-2,Rise With A Goal,Walton Kottke
-3,Tree Of The Plague,Nicolas Grimshaw
-4,Healing The Moon,Walton Kottke
-5,Knights And Rebels,Lloyd Tschanz
-6,Opponent Of Dawn,Ernesto Nettles
-7,Tree Of Eternity,Perry Eppler
-8,Wolves Of The End,Lamont Fitting
-9,Knights And Rebels,Otha Clayborne
-10,Companion Of Next Year,Lamont Fitting
+1,Begging In Eternity,Perry Eppler
+2,Possessed By The Apocalypse,Darrick Estrada
+3,Raised By The Shadows,Nicolas Grimshaw
+4,Criminals Of Destruction,Nicolas Grimshaw
+5,Traitors And Criminals,Raymond Luechtefeld
+6,Criminals Of Destruction,Ernesto Nettles
+7,Possessed By The Apocalypse,Damion Cassel
+8,Phantom Of The Day,Bradly Moser
+9,Carnage Of The Day,Lloyd Tschanz
+10,Choice Of Desire,Darrick Estrada

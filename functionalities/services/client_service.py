@@ -145,4 +145,5 @@ class ClientService:
         return list_of_matching_clients
 
     def get_all_clients(self):
-        return self._client_repository.get_all_clients()
+        clients_list = sorted(self._client_repository.get_all_clients(), key=lambda client: client.id)
+        return clients_list

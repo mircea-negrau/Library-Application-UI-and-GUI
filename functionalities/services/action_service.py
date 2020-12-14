@@ -89,7 +89,7 @@ class ActionService:
         self.__action_repository.push_undo(action)
         self.__action_repository.clear_redo_list()
 
-    def push_consecutive_indirect_remove_action_to_undo_list(self, entity):
+    def push_cascade_to_undo_list(self, entity):
         action_id = self.__action_repository.get_last_action_id()
         entity_type = self.get_action_entity_type(entity)
         action = {

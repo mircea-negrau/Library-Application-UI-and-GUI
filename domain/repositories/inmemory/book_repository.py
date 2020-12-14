@@ -45,5 +45,4 @@ class BookRepository(object):
         Function to return the full list of books found in the repository.
         :return: list, containing the full list of books.
         """
-        self._books = sorted(self._books, key=lambda book: book.id)
         return self._books

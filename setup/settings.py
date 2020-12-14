@@ -4,6 +4,9 @@ from domain.entities.rental_entity import Rental
 from domain.repositories.binaryfiles.book_repository import BookBinaryRepository
 from domain.repositories.binaryfiles.client_repository import ClientBinaryRepository
 from domain.repositories.binaryfiles.rental_repository import RentalBinaryRepository
+from domain.repositories.database.book_repository import BookDatabaseRepository
+from domain.repositories.database.client_repository import ClientDatabaseRepository
+from domain.repositories.database.rental_repository import RentalDatabaseRepository
 from domain.repositories.inmemory.action_repository import ActionRepository
 from domain.repositories.inmemory.book_repository import BookRepository
 from domain.repositories.inmemory.client_repository import ClientRepository
@@ -73,6 +76,10 @@ class Program:
                                                           Client.json_write_client)
             self.rental_repository = RentalJsonRepository(self.rental_repository, Rental.json_read_rental,
                                                           Rental.json_write_rental)
+        elif self.repository_type == "database":
+            self.book_repository = BookDatabaseRepository(Book.read_book_database, Book.write_book_database)
+            self.client_repository = ClientDatabaseRepository(Client.read_client_database, Client.write_client_database)
+            self.rental_repository = RentalDatabaseRepository(Rental.read_rental_database, Rental.write_rental_database)
         self.action_repository = ActionRepository()
 
     def configure_services(self):
@@ -90,7 +97,6 @@ class Program:
             self.configure_initial_population()
         elif self.interface == "GUI":
             self.interface = GUI(self.book_service, self.client_service, self.rental_service, self.action_service)
-            self.configure_initial_population()
 
     def configure_initial_population(self):
         if self.populate.lower() == "true":

@@ -161,4 +161,5 @@ class BookService:
         return None
 
     def get_all_books(self):
-        return self.__book_repository.get_all_books()
+        books_list = sorted(self.__book_repository.get_all_books(), key=lambda book: book.id)
+        return books_list

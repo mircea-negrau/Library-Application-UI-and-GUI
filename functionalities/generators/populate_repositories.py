@@ -59,7 +59,10 @@ def populate_rental_repository(rental_service):
         if book_id not in unavailable_books:
             unavailable_books.append(book_id)
             client_id = random.randint(1, 10)
-            rental_service.add_rental(book_id, client_id)
+            try:
+                rental_service.add_rental(book_id, client_id)
+            except:
+                pass
         else:
             index -= 1
         index += 1

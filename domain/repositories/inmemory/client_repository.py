@@ -46,5 +46,4 @@ class ClientRepository(object):
         Function to return the full list of client found in the repository.
         :return: list, containing the full list of clients.
         """
-        self._clients = sorted(self._clients, key=lambda client: client.id)
         return self._clients

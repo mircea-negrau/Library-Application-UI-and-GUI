@@ -177,8 +177,10 @@ class WindowAddBooks(QtWidgets.QWidget):
                             QPushButton{font-size: 30px}
                         """)
 
-        self.lineEditTitle = QtWidgets.QLineEdit('Title')
-        self.lineEditAuthor = QtWidgets.QLineEdit('Author')
+        self.lineEditTitle = QtWidgets.QLineEdit()
+        self.lineEditTitle.setPlaceholderText("Title")
+        self.lineEditAuthor = QtWidgets.QLineEdit()
+        self.lineEditAuthor.setPlaceholderText('Author')
         self.buttonAdd = QtWidgets.QPushButton('Add book')
         self.buttonAdd.clicked.connect(self.check_if_valid)
         self.buttonBack = QtWidgets.QPushButton('Back to main menu')
@@ -225,9 +227,12 @@ class WindowUpdateBooks(QtWidgets.QWidget):
                             QPushButton{font-size: 30px}
                         """)
 
-        self.lineID = QtWidgets.QLineEdit('ID')
-        self.lineEditTitle = QtWidgets.QLineEdit('Title')
-        self.lineEditAuthor = QtWidgets.QLineEdit('Author')
+        self.lineID = QtWidgets.QLineEdit()
+        self.lineID.setPlaceholderText('ID')
+        self.lineEditTitle = QtWidgets.QLineEdit()
+        self.lineEditTitle.setPlaceholderText('Title')
+        self.lineEditAuthor = QtWidgets.QLineEdit()
+        self.lineEditAuthor.setPlaceholderText('Author')
         self.buttonUpdate = QtWidgets.QPushButton('Update book')
         self.buttonUpdate.clicked.connect(self.check_if_valid)
         self.buttonBack = QtWidgets.QPushButton('Back to main menu')
@@ -243,18 +248,21 @@ class WindowUpdateBooks(QtWidgets.QWidget):
     def check_if_valid(self):
         try:
             book_id = int(self.lineID.text())
+            new_title = self.lineEditTitle.text()
+            new_author = self.lineEditAuthor.text()
+            valid_title = 0 < len(new_title) < 26
+            valid_author = 0 < len(new_author) < 26
+            valid_input = valid_title and valid_author
+            if valid_input:
+                self._book_service.update_book_by_book_id(book_id, new_title, new_author)
+                self.back_to_main_menu()
+            else:
+                QMessageBox.warning(self, "ERROR", "Invalid values!")
         except ValueError:
-            raise ValueError("Invalid ID")
-        new_title = self.lineEditTitle.text()
-        new_author = self.lineEditAuthor.text()
-        valid_title = 0 < len(new_title) < 26
-        valid_author = 0 < len(new_author) < 26
-        valid_input = valid_title and valid_author
-        if valid_input:
-            self._book_service.update_book_by_book_id(book_id, new_title, new_author)
-            self.back_to_main_menu()
-        else:
-            QMessageBox.warning(self, "ERROR", "Invalid values!")
+            QMessageBox.warning(self, "ERROR", "Invalid ID!")
+        except RepoError:
+            QMessageBox.warning(self, "ERROR", "Book not found!")
+
 
     def back_to_main_menu(self):
         self.switch_to_main_menu.emit("self.window_update_books.close()")
@@ -280,7 +288,8 @@ class WindowRemoveBooks(QtWidgets.QWidget):
                             QPushButton{font-size: 30px}
                         """)
 
-        self.lineID = QtWidgets.QLineEdit('ID')
+        self.lineID = QtWidgets.QLineEdit()
+        self.lineID.setPlaceholderText('ID')
         self.buttonRemove = QtWidgets.QPushButton('Remove book')
         self.buttonRemove.clicked.connect(self.check_if_valid)
         self.buttonBack = QtWidgets.QPushButton('Back to main menu')
@@ -368,7 +377,8 @@ class WindowAddClients(QtWidgets.QWidget):
                             QPushButton{font-size: 30px}
                         """)
 
-        self.lineEditName = QtWidgets.QLineEdit('Name')
+        self.lineEditName = QtWidgets.QLineEdit()
+        self.lineEditName.setPlaceholderText('Name')
         self.buttonAdd = QtWidgets.QPushButton('Add name')
         self.buttonAdd.clicked.connect(self.check_if_valid)
         self.buttonBack = QtWidgets.QPushButton('Back to main menu')
@@ -411,8 +421,10 @@ class WindowUpdateClients(QtWidgets.QWidget):
                             QPushButton{font-size: 30px}
                         """)
 
-        self.lineID = QtWidgets.QLineEdit('ID')
-        self.lineEditName = QtWidgets.QLineEdit('Name')
+        self.lineID = QtWidgets.QLineEdit()
+        self.lineID.setPlaceholderText('ID')
+        self.lineEditName = QtWidgets.QLineEdit()
+        self.lineEditName.setPlaceholderText('Name')
         self.buttonUpdate = QtWidgets.QPushButton('Update client')
         self.buttonUpdate.clicked.connect(self.check_if_valid)
         self.buttonBack = QtWidgets.QPushButton('Back to main menu')
@@ -434,8 +446,10 @@ class WindowUpdateClients(QtWidgets.QWidget):
                 self.back_to_main_menu()
             else:
                 QMessageBox.warning(self, "ERROR", "Invalid values!")
-        except ValueError:
-            QMessageBox.warning(self, "ERROR", "Invalid ID!")
+        except RepoError as text:
+            QMessageBox.warning(self, "ERROR", "Client not found!")
+        except ValueError as text:
+            QMessageBox.warning(self, "ERROR", "Invalid ID")
 
     def back_to_main_menu(self):
         self.switch_to_main_menu.emit("self.window_update_clients.close()")
@@ -461,7 +475,8 @@ class WindowRemoveClients(QtWidgets.QWidget):
                             QPushButton{font-size: 30px}
                         """)
 
-        self.lineID = QtWidgets.QLineEdit('ID')
+        self.lineID = QtWidgets.QLineEdit()
+        self.lineID.setPlaceholderText('ID')
         self.buttonRemove = QtWidgets.QPushButton('Remove client')
         self.buttonRemove.clicked.connect(self.check_if_valid)
         self.buttonBack = QtWidgets.QPushButton('Back to main menu')
@@ -541,8 +556,10 @@ class WindowRentBook(QtWidgets.QWidget):
                             QPushButton{font-size: 30px}
                         """)
 
-        self.lineEditBookID = QtWidgets.QLineEdit('Book ID')
-        self.lineEditClientID = QtWidgets.QLineEdit('Client ID')
+        self.lineEditBookID = QtWidgets.QLineEdit()
+        self.lineEditBookID.setPlaceholderText('Book ID')
+        self.lineEditClientID = QtWidgets.QLineEdit()
+        self.lineEditClientID.setPlaceholderText('Client ID')
         self.buttonRent = QtWidgets.QPushButton('Rent book')
         self.buttonRent.clicked.connect(self.check_if_valid)
         self.buttonBack = QtWidgets.QPushButton('Back to main menu')
@@ -587,7 +604,8 @@ class WindowReturnBook(QtWidgets.QWidget):
                             QPushButton{font-size: 30px}
                         """)
 
-        self.lineEditID = QtWidgets.QLineEdit('Book ID')
+        self.lineEditID = QtWidgets.QLineEdit()
+        self.lineEditID.setPlaceholderText('Book ID')
         self.buttonReturn = QtWidgets.QPushButton('Return book')
         self.buttonReturn.clicked.connect(self.check_if_valid)
         self.buttonBack = QtWidgets.QPushButton('Back to main menu')
@@ -781,7 +799,8 @@ class WindowSearchBooks(QtWidgets.QWidget):
         mainLayout.addWidget(table)
         buttonLayout = QtWidgets.QVBoxLayout()
 
-        self.text_entry = QtWidgets.QLineEdit('Filter')
+        self.text_entry = QtWidgets.QLineEdit()
+        self.text_entry.setPlaceholderText('Filter')
         buttonLayout.addWidget(self.text_entry)
 
         self.button_id = QtWidgets.QPushButton('ID')
@@ -857,7 +876,8 @@ class WindowSearchClients(QtWidgets.QWidget):
         mainLayout.addWidget(table)
         buttonLayout = QtWidgets.QVBoxLayout()
 
-        self.text_entry = QtWidgets.QLineEdit('Filter')
+        self.text_entry = QtWidgets.QLineEdit()
+        self.text_entry.setPlaceholderText('Filter')
         buttonLayout.addWidget(self.text_entry)
 
         self.button_id = QtWidgets.QPushButton('ID')

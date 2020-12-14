@@ -36,13 +36,14 @@ class Client:
         self.__name = name
 
     @staticmethod
-    def read_client(line):
-        parts = line.split(",")
-        return Client(int(parts[0]), parts[1])
+    def read_client(text_line):
+        client_attributes = text_line.split(",")
+        client_id, client_name = int(client_attributes[0]), client_attributes[1]
+        return Client(client_id, client_name)
 
     @staticmethod
-    def json_read_client(dictionary):
-        return Client(int(dictionary["id"]), dictionary["name"])
+    def json_read_client(json_packed_client):
+        return Client(int(json_packed_client["id"]), json_packed_client["name"])
 
     @staticmethod
     def write_client(client):
@@ -50,8 +51,18 @@ class Client:
 
     @staticmethod
     def json_write_client(client):
-        dictionary = {
+        json_packed_client = {
             "id": client.id,
             "name": client.name
         }
-        return dictionary
+        return json_packed_client
+
+    @staticmethod
+    def read_client_database(row):
+        client_id, name = int(row[0]), row[1]
+        return Client(client_id, name)
+
+    @staticmethod
+    def write_client_database(client):
+        client_tuple = (client.name, client.id)
+        return client_tuple

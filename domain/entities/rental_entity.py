@@ -92,23 +92,25 @@ class Rental:
     @staticmethod
     def string_read_rental(line):
         parts = line.split(",")
-        if parts[3] != "None":
-            parts[3] = parts[3].split("-")
-            year = int(parts[3][0])
-            month = int(parts[3][1])
-            day = int(parts[3][2])
-            parts[3] = date(year, month, day)
+        rental_id, book_id, client_id = int(parts[0]), int(parts[1]), int(parts[2])
+        rented_date, returned_date = parts[3], parts[4]
+        if rented_date != "None":
+            rented_date_split = rented_date.split("-")
+            year = int(rented_date_split[0])
+            month = int(rented_date_split[1])
+            day = int(rented_date_split[2])
+            rented_date = date(year, month, day)
         else:
-            parts[3] = None
-        if parts[4] != "None":
-            parts[4] = parts[4].split("-")
-            year = int(parts[4][0])
-            month = int(parts[4][1])
-            day = int(parts[4][2])
-            parts[4] = date(year, month, day)
+            rented_date = None
+        if returned_date != "None":
+            returned_date_split = returned_date.split("-")
+            year = int(returned_date_split[0])
+            month = int(returned_date_split[1])
+            day = int(returned_date_split[2])
+            returned_date = date(year, month, day)
         else:
-            parts[4] = None
-        return Rental(int(parts[0]), int(parts[1]), int(parts[2]), parts[3], parts[4])
+            returned_date = None
+        return Rental(rental_id, book_id, client_id, rented_date, returned_date)
 
     @staticmethod
     def json_read_rental(dictionary):
@@ -146,3 +148,30 @@ class Rental:
             "returned_date": str(rental.returned_date)
         }
         return dictionary
+
+    @staticmethod
+    def read_rental_database(row):
+        rental_id, book_id, client_id = int(row[0]), int(row[1]), int(row[2])
+        rented_date, returned_date = row[3], row[4]
+        if rented_date != "None":
+            rented_date_split = rented_date.split("-")
+            year = int(rented_date_split[0])
+            month = int(rented_date_split[1])
+            day = int(rented_date_split[2])
+            rented_date = date(year, month, day)
+        else:
+            rented_date = None
+        if returned_date != "None":
+            returned_date_split = returned_date.split("-")
+            year = int(returned_date_split[0])
+            month = int(returned_date_split[1])
+            day = int(returned_date_split[2])
+            returned_date = date(year, month, day)
+        else:
+            returned_date = None
+        return Rental(rental_id, book_id, client_id, rented_date, returned_date)
+
+    @staticmethod
+    def write_rental_database(rental):
+        rental_tuple = (rental.book_id, rental.client_id, str(rental.rented_date), str(rental.returned_date), rental.id)
+        return rental_tuple

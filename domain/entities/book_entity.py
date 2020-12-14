@@ -53,9 +53,10 @@ class Book:
         self.__author = author
 
     @staticmethod
-    def string_read_book(line):
-        parts = line.split(",")
-        return Book(int(parts[0]), parts[1], parts[2])
+    def string_read_book(text_line):
+        parts = text_line.split(",")
+        book_id, book_title, book_author = int(parts[0]), parts[1], parts[2]
+        return Book(book_id, book_title, book_author)
 
     @staticmethod
     def json_read_book(dictionary):
@@ -73,3 +74,13 @@ class Book:
             "author": book.author
         }
         return dictionary
+
+    @staticmethod
+    def read_book_database(row):
+        book_id, title, author = int(row[0]), row[1], row[2]
+        return Book(book_id, title, author)
+
+    @staticmethod
+    def write_book_database(book):
+        book_tuple = (book.title, book.author, book.id)
+        return book_tuple

@@ -105,12 +105,13 @@ class RentalService:
         """
         book_id = int(book_id)
         while True:
+            print(self._rental_repository.get_all_rentals())
             rental_id = self.find_rental_id_by_book_id(book_id)
             if rental_id is None:
                 return
             rental_index, rental = self.find_rental_index_by_id(rental_id)
             self._rental_repository.remove_rental_by_index(rental_index)
-            self._action_service.push_consecutive_indirect_remove_action_to_undo_list(rental)
+            self._action_service.push_cascade_to_undo_list(rental)
 
     def remove_rental_by_client_id(self, client_id):
         """
@@ -127,7 +128,7 @@ class RentalService:
                 break
             rental_index, rental = self.find_rental_index_by_id(rental_id)
             self._rental_repository.remove_rental_by_index(rental_index)
-            self._action_service.push_consecutive_indirect_remove_action_to_undo_list(rental)
+            self._action_service.push_cascade_to_undo_list(rental)
 
     def find_active_rental_id_by_book_id(self, book_id):
         """

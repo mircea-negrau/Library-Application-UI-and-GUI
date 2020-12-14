@@ -48,5 +48,4 @@ class RentalRepository(object):
         Function to return the full list of rental found in the repository.
         :return: list, containing the full list of rentals.
         """
-        self._rentals = sorted(self._rentals, key=lambda rental: rental.id)
         return self._rentals
