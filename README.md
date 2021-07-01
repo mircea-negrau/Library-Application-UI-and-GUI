@@ -15,26 +15,15 @@ Create an application to:
     - Most rented author. This provides the list of books authored, sorted in descending order of the number of rentals their books have.
 5. Unlimited undo/redo functionality. Each step will undo/redo the previous operation performed by the user. Undo/redo operations must cascade and have a memory-efficient implementation (no superfluous list copying).# Assignment 09
 
-# Assignment 06 - 08
 ## Requirements
 - You will solve one of the problems below using simple feature-driven development
 - Your program must provide a menu-driven console-based user interface. Implementation details are up to you
 - Implementation must employ layered architecture and classes
-
-### For week 8 (25% of grade)
-- Implement features 1 and 2
 - Have at least 10 procedurally generated items in your application at startup
 - Provide specification and tests for all non-UI classes and methods for the first functionality
 - Implement and use your own exception classes.
-
-### For week 9 (25% of grade)
-- Implement features 3 and 4
 - Implement **PyUnit test cases**
 
-### For week 10 (50% of grade)
-- All features must be implemented
-
-## For week 11
 1. You must implement two additional repository sets: one using text files for storage, and one using binary files (e.g. using object serialization with [Pickle](https://docs.python.org/3.8/library/pickle.html)).
 2. The program must work the same way using in-memory repositories, text-file repositories and binary file repositories.
 3. The decision of which repositories are employed, as well as the location of the repository input files will be made in the program’s `settings.properties` file. An example is below:
