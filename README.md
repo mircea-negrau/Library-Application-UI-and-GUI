@@ -23,6 +23,11 @@ Create an application to:
 - Provide specification and tests for all non-UI classes and methods for the first functionality
 - Implement and use your own exception classes.
 - Implement **PyUnit test cases**
+- 95% unit test code coverage for all modules except the UI 
+- Implement a graphical user interface, in addition to the required menu-driven UI. Program can be started with either UI, without changes to source code.
+- In addition to the file-based implementations above, implement the repository layer to use JSON or XML files for storage (at your choice).
+- Create a `Settings` class into which you load the data from the `settings.properties` file. Then, the application start module decides which modules are started by examining the `settings` object. This further decouples the properties input file from the application.
+- Implement a database-backed (SQL or NoSQL) repository. Use the database system’s update functionalities properly (don’t rewrite the entire database at each operation).
 
 1. You must implement two additional repository sets: one using text files for storage, and one using binary files (e.g. using object serialization with [Pickle](https://docs.python.org/3.8/library/pickle.html)).
 2. The program must work the same way using in-memory repositories, text-file repositories and binary file repositories.
@@ -43,17 +48,4 @@ Create an application to:
     rentals = “rentals.pickle”
     ui = “GUI”
     ```
-
-## Bonus possibility (0.1p, deadline week 10)
-- 95% unit test code coverage for all modules except the UI 
-
-## Bonus possibility (0.2p, deadline week 10)
-- Implement a graphical user interface, in addition to the required menu-driven UI. Program can be started with either UI, without changes to source code.
-
-## Bonus possibility (0.1p, deadline week 11)
-- In addition to the file-based implementations above, implement the repository layer to use JSON or XML files for storage (at your choice).
-- Create a `Settings` class into which you load the data from the `settings.properties` file. Then, the application start module decides which modules are started by examining the `settings` object. This further decouples the properties input file from the application.
-
-## Bonus possibility (0.1p, deadline week 12)
-- Implement a database-backed (SQL or NoSQL) repository. Use the database system’s update functionalities properly (don’t rewrite the entire database at each operation).
 
